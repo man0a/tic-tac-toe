@@ -1,0 +1,8 @@
+.game_field__wrapper {
+  display: grid;
+  margin: 100px auto;
+  border: 2px blue solid;
+  width: 500px;
+  height: 500px;
+  grid-template-columns: 33% 33% 33%;
+}
