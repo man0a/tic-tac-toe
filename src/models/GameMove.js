@@ -1,5 +1,5 @@
 class GameMove {
-  constructor(x, y, player) {
+  constructor(y, x, player) {
     this.x = x;
     this.y = y;
     this.player = player

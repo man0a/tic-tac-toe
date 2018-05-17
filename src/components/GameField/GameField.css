@@ -1,8 +1,29 @@
-.game_field__wrapper {
+.wrapper__game_field {
   display: grid;
   margin: 100px auto;
-  border: 2px blue solid;
+  border: 2px black solid;
   width: 500px;
   height: 500px;
-  grid-template-columns: 33% 33% 33%;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.wrapper__game_field div {
+  border: 1px solid black;
+}
+
+.circle {
+  z-index: -1;
+  border: 2px solid black;
+  border-radius: 50%;
+  display: inline-block;
+  height: 90%;
+  width: 90%;
+}
+
+.playing_square {
+  padding-top: 10px;
+}
+
+.cross {
+
 }
