@@ -5,3 +5,5 @@ class GameMove {
     this.player = player
   }
 }
+
+export default GameMove

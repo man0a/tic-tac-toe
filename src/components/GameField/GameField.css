@@ -4,7 +4,7 @@
   border: 2px black solid;
   width: 500px;
   height: 500px;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template: 1fr 1fr 1fr / 1fr 1fr 1fr;
 }
 
 .wrapper__game_field div {
@@ -12,12 +12,11 @@
 }
 
 .circle {
-  z-index: -1;
   border: 2px solid black;
   border-radius: 50%;
   display: inline-block;
-  height: 90%;
-  width: 90%;
+  height: 80%;
+  width: 80%;
 }
 
 .playing_square {
@@ -25,5 +24,20 @@
 }
 
 .cross {
+  position: absolute;
+  margin-top: -29px;
+}
 
+.cross:before, .cross:after {
+  position: absolute;
+  content: ' ';
+  height: 200px;
+  width: 2px;
+  background-color: red;
+}
+.cross:before {
+  transform: rotate(45deg);
+}
+.cross:after {
+  transform: rotate(-45deg);
 }

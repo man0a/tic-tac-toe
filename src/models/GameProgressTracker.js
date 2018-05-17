@@ -1,6 +1,9 @@
+const STALEMATE = "STALEMATE";
+
 class GameProgressTracker {
   constructor(size) {
     this.size = size;
+    this.moveCounter = 0;
     this.progress = {};
     this.initializePlayingField();
   }
@@ -17,19 +20,28 @@ class GameProgressTracker {
 
   addMoveAndCheckWinner = (gameMove) => {
     //Part of main Diagonal
-    let playerProgressor = gameMove.player === 'X' ? -1 : 1;
+    this.moveCounter += 1;
+    let playerProgress = gameMove.player === 'X' ? -1 : 1;
     if (gameMove.x === gameMove.y) {
-      this.progress[`diag-main`] += playerProgressor;
+      this.progress[`diag-main`] += playerProgress;
     } else if((gameMove.x + gameMove.y) === this.size - 1) {
-      this.progress[`diag-anti`] += playerProgressor;
+      this.progress[`diag-anti`] += playerProgress;
     }
     // Check if diagonal winners
 
     // Check if these are winners;
-    this.progress[`x-${gameMove.x}`] += playerProgressor;
-    this.progress[`y-${gameMove.y}`] += playerProgressor;
+    this.progress[`x-${gameMove.x}`] += playerProgress;
+    this.progress[`y-${gameMove.y}`] += playerProgress;
+
+    if (this.isStalemate()) {
+      return STALEMATE;
+    }
 
     return false
+  }
+
+  isStalemate() {
+    return this.size === this.moveCounter;
   }
 
 }
