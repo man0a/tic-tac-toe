@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
-import "./Scoreboard.css"
+import { connect } from "react-redux";
+import "./Scoreboard.css";
+
+const mapStateToProps = state => {
+  return { playerX: state.playerX, playerO: state.playerO };
+};
 
 class ScoreBoard extends Component {
   constructor(props) {
@@ -19,4 +24,7 @@ class ScoreBoard extends Component {
     )
   }
 }
-export default ScoreBoard;
+
+export { ScoreBoard };
+
+export default connect(mapStateToProps)(ScoreBoard);

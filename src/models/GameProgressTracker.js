@@ -19,29 +19,55 @@ class GameProgressTracker {
   };
 
   addMoveAndCheckWinner = (gameMove) => {
-    //Part of main Diagonal
     this.moveCounter += 1;
-    let playerProgress = gameMove.player === 'X' ? -1 : 1;
+    let playerProgress = gameMove.player === 'cross' ? -1 : 1;
     if (gameMove.x === gameMove.y) {
       this.progress[`diag-main`] += playerProgress;
     } else if((gameMove.x + gameMove.y) === this.size - 1) {
       this.progress[`diag-anti`] += playerProgress;
     }
-    // Check if diagonal winners
 
-    // Check if these are winners;
     this.progress[`x-${gameMove.x}`] += playerProgress;
     this.progress[`y-${gameMove.y}`] += playerProgress;
 
-    if (this.isStalemate()) {
-      return STALEMATE;
+    if (this.moveCounter >= Math.floor(this.size-1/2)) { // Start checking for winners after |_n/2_| moves
+      const result = this.checkRowColWinners() || this.checkDiagonalWinner();
+      if (result) {
+        return result
+      }
+
+      if (this.isStalemate()) {
+        return STALEMATE;
+      }
     }
 
+    return false
+  };
+
+  checkRowColWinners() {
+    for(let i = 0; i<this.size; i++) {
+      if (this.progress[`x-${i}`] === this.size || this.progress[`y-${i}`] === this.size) {
+        return "O";
+      } else if (this.progress[`x-${i}`] === this.size * - 1 || this.progress[`y-${i}`] === this.size * - 1) {
+        return "X";
+      }
+    }
+    return false;
+  }
+
+  checkDiagonalWinner() {
+    if (this.progress[`diag-main`] === this.size || this.progress[`diag-anti`] === this.size) {
+      return "O";
+    } else if (this.progress[`diag-main`] === this.size * - 1 || this.progress[`diag-anti`] === this.size * - 1) {
+      return "X";
+    }
     return false
   }
 
   isStalemate() {
-    return this.size === this.moveCounter;
+    return this.size * this.size === this.moveCounter;
   }
 
 }
+
+export default GameProgressTracker
