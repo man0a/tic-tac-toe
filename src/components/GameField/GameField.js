@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
+import uuid from "uuid";
 import { increaseScore } from "../../redux/actions";
 import GameMove from '../../models/GameMove';
 import GameProgressTracker from '../../models/GameProgressTracker';
@@ -18,8 +19,7 @@ class GameField extends Component {
   constructor(props){
     super(props);
     this.state = {
-      playerOScore: 0,
-      playerXScore: 0,
+      currentGameID: uuid(),
       currentPlayer: PLAYER.O,
       currentGame: new GameProgressTracker(GAME_BOARD_SIZE),
       isFinished: false
@@ -30,11 +30,17 @@ class GameField extends Component {
     return nextState.isFinished;
   }
 
-  drawGrid() {
+  drawGrid(gameID) {
     let grid = [];
     for(let x = 0; x < GAME_BOARD_SIZE; x++) {
       for(let y = 0; y < GAME_BOARD_SIZE; y++) {
-        grid.push(<div className={"playing_square"} onClick={this.drawMove.bind(this)} data={`${y}-${x}`} key={`${y}-${x}`} />);
+        grid.push(
+          <div className={"playing_square"}
+               onClick={this.drawMove.bind(this)}
+               data={`${y}-${x}`}
+               key={`${y}-${x}-${gameID}`
+               } />
+        );
       }
     }
     return grid;
@@ -82,16 +88,18 @@ class GameField extends Component {
   }
 
   createNewGame() {
-    this.setState({ currentGame: new GameProgressTracker(GAME_BOARD_SIZE) });
+    this.setState({isFinished: false, currentGame: new GameProgressTracker(GAME_BOARD_SIZE), currentGameID: uuid() });
+    this.forceUpdate();
   }
 
   render() {
     console.log("re-render");
+    const { currentGameID } =  this.state;
     return (
       <div className={"wrapper"}>
         <button className={"btn btn__new_game"} onClick={this.createNewGame.bind(this)}> Start New Game </button>
         <div className={"wrapper wrapper__game_field"}>
-          { this.drawGrid() }
+          { this.drawGrid(currentGameID) }
         </div>
       </div>
     )
