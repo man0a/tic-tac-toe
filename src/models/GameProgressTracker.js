@@ -21,9 +21,12 @@ class GameProgressTracker {
   addMoveAndCheckWinner = (gameMove) => {
     this.moveCounter += 1;
     let playerProgress = gameMove.player === 'cross' ? -1 : 1;
+
     if (gameMove.x === gameMove.y) {
       this.progress[`diag-main`] += playerProgress;
-    } else if((gameMove.x + gameMove.y) === this.size - 1) {
+    }
+
+    if(parseInt(gameMove.x) + parseInt(gameMove.y) === this.size - 1) {
       this.progress[`diag-anti`] += playerProgress;
     }
 
