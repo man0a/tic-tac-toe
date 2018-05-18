@@ -8,7 +8,7 @@ const initialState = {
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     case INCREASE_SCORE:
-      let currentScore = { ...action.payload };
+      let currentScore = { ...state };
       action.payload === "X" ? currentScore.playerX += 1 : currentScore.playerO += 1;
       return currentScore;
     default:

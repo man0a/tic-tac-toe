@@ -12,6 +12,10 @@ class ScoreBoard extends Component {
     this.state = { playerX: props.playerX || 0, playerO: props.playerO || 0 }
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({ playerX: nextProps.playerX, playerO: nextProps.playerO });
+  }
+
   render() {
     return (
       <fieldset>

@@ -27,7 +27,6 @@ class GameField extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    console.log("nextState", nextState);
     return nextState.isFinished;
   }
 
