@@ -1,6 +1,6 @@
 .wrapper__game_field {
   display: grid;
-  margin: 100px auto;
+  margin: 50px auto;
   border: 2px black solid;
   width: 500px;
   height: 500px;
