@@ -6,3 +6,19 @@ fieldset {
   margin: 50px auto auto;
   width: 485px;
 }
+
+legend {
+  display: inline-block;
+  font: normal 48px/normal "Warnes", Helvetica, sans-serif;
+  color: white;
+  text-decoration: normal;
+  text-shadow: 0 0 10px rgba(255,255,255,1) , 0 0 20px rgba(255,255,255,1) , 0 0 30px rgba(255,255,255,1) , 0 0 40px #ff00de , 0 0 70px #ff00de , 0 0 80px #ff00de , 0 0 100px #ff00de ;
+  -webkit-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+  -moz-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+  -o-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+  transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+}
+
+legend:hover {
+
+}

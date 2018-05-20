@@ -1,14 +1,10 @@
 .wrapper__game_field {
   display: grid;
   margin: 50px auto;
-  border: 2px black solid;
+  border: 1px black solid;
   width: 500px;
   height: 500px;
   grid-template: 1fr 1fr 1fr / 1fr 1fr 1fr;
-}
-
-.wrapper__game_field div {
-  border: 1px solid black;
 }
 
 .circle {
@@ -17,10 +13,13 @@
   display: inline-block;
   height: 80%;
   width: 80%;
+  box-shadow: 0 0 10px rgba(255,255,255,1) , 0 0 20px rgba(255,255,255,1) , 0 0 30px rgba(255,255,255,1) , 0 0 40px #ff00de , 0 0 70px #ff00de , 0 0 80px #ff00de , 0 0 100px #ff00de ;
 }
 
 .playing_square {
+  border: 1px solid white;
   padding-top: 10px;
+  box-shadow: 0 0 10px rgba(255,255,255,1) , 0 0 10px rgba(255,255,255,1) , 0 0 30px rgba(255,255,255,1) , 0 0 40px #02c5ff, 0 0 70px #02c5ff , 0 0 80px #02c5ff;
 }
 
 .cross {
@@ -34,6 +33,7 @@
   height: 200px;
   width: 2px;
   background-color: red;
+  box-shadow: 0 0 10px rgba(255,255,255,1) , 0 0 20px rgba(255,255,255,1) , 0 0 30px rgba(255,255,255,1) , 0 0 40px #ff00de , 0 0 70px #ff00de , 0 0 80px #ff00de , 0 0 100px #ff00de ;
 }
 .cross:before {
   transform: rotate(45deg);
