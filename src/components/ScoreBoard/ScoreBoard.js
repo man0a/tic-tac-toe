@@ -19,7 +19,7 @@ class ScoreBoard extends Component {
   render() {
     return (
       <fieldset>
-        <legend> Current Score</legend>
+        <legend>Score</legend>
         <div className={"wrapper__scoreboard"}>
           <span>Player X: {this.state.playerX}</span>
           <span>Player O: {this.state.playerO}</span>
