@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import uuid from "uuid";
 import { increaseScore } from "../../redux/actions";
+import GameSquare from "./GameSquare/GameSquare";
 import GameMove from '../../models/GameMove';
 import GameProgressTracker from '../../models/GameProgressTracker';
 import "./GameField.css";
@@ -35,11 +36,7 @@ class GameField extends Component {
     for(let x = 0; x < GAME_BOARD_SIZE; x++) {
       for(let y = 0; y < GAME_BOARD_SIZE; y++) {
         grid.push(
-          <div className={"playing_square"}
-               onClick={this.drawMove.bind(this)}
-               data={`${y}-${x}`}
-               key={`${y}-${x}-${gameID}`
-               } />
+          <GameSquare clickHandler={this.drawMove.bind(this)} y={y} x={x} gameID={gameID} key={`${y}-${x}-${gameID}`} />
         );
       }
     }
@@ -59,7 +56,6 @@ class GameField extends Component {
     const coordinates = e.target.getAttribute('data').split('-');
     const result = currentGame.addMoveAndCheckWinner(new GameMove(coordinates[0], coordinates[1], currentPlayer));
     e.target.setAttribute('data', "");
-
     const nextPlayer = currentPlayer === PLAYER.O ? PLAYER.X : PLAYER.O;
     this.setState({ currentPlayer: nextPlayer });
 
@@ -93,7 +89,6 @@ class GameField extends Component {
   }
 
   render() {
-    console.log("re-render");
     const { currentGameID } =  this.state;
     return (
       <div className={"wrapper"}>

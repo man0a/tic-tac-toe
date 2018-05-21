@@ -1,30 +1,77 @@
 import GameField from "./GameField"
-import uuid from "uuid";
-import GameProgressTracker from "../../models/GameProgressTracker";
 
-it('renders without crashing', () => {
-  shallow(<GameField />);
-//  Check initial state
-//   this.state = {
-//     currentGameID: uuid(),
-//     currentPlayer: PLAYER.O,
-//     currentGame: new GameProgressTracker(GAME_BOARD_SIZE),
-//     isFinished: false
-//   };
-});
+const count = (str, pattern) => {
+  return ((str || '').match(pattern) || []).length
+};
 
-it('Board is cleared when new game button pressed', () => {
-  // assert class is not found and also key is different
-});
+describe('Component: <GameField />', () => {
+  describe('shallow render tests', () => {
+    let wrapper;
 
-it('Move is drawn on board when grid is clicked', () => {
-  // assert class is not found and also key is different
-});
+    beforeEach(() => {
+      wrapper = shallow(<GameField store={configureStore([])({})}/>).dive();
+    });
 
-it('Only one move is drawn per square', () => {
+    it('renders without crashing', () => {
+      expect(wrapper).toHaveLength(1);
 
-});
+      expect(wrapper.state().currentPlayer).toEqual("circle");
+      expect(wrapper.state().isFinished).toEqual(false);
 
-it('No further moves can be made when game is won before stalemate', () => {
+      expect(wrapper.state().currentGameID).not.toBeNull();
+      expect(wrapper.state().currentGame).not.toBeNull();
+    });
+  });
 
+  describe('mount render tests', () => {
+    let wrapper;
+
+    beforeEach(() => {
+      wrapper = mount(<GameField store={configureStore([])({})}/>);
+    });
+
+    it('Board of size 3x3 with 9 elements is drawn', () => {
+      expect(wrapper.find(".playing_square")).toHaveLength(9);
+    });
+
+    it('Move is drawn on board when grid is clicked', () => {
+      expect(wrapper.html()).not.toContain("circle");
+      expect(wrapper.html()).toContain("data=\"0-0\"");
+      wrapper.find(".playing_square[data='0-0']").simulate('click');
+
+      expect(wrapper.html()).toContain("circle");
+      expect(wrapper.html()).not.toContain("data=\"0-0\"");
+    });
+
+    it('Moves alternate between circle and cross', () => {
+      expect(wrapper.html()).not.toContain("circle");
+      expect(wrapper.html()).not.toContain("cross");
+
+      wrapper.find(".playing_square[data='0-0']").simulate('click');
+
+      expect(wrapper.html()).toContain("circle");
+      expect(wrapper.html()).not.toContain("cross");
+
+      wrapper.find(".playing_square[data='0-1']").simulate('click');
+
+      expect(wrapper.html()).toContain("circle");
+      expect(wrapper.html()).toContain("cross");
+    });
+
+    it('No further moves can be made after game is won', () => {
+      wrapper.find(".playing_square[data='0-0']").simulate('click'); // Player O goes
+
+      wrapper.find(".playing_square[data='1-0']").simulate('click'); // Player X goes
+
+      wrapper.find(".playing_square[data='1-1']").simulate('click'); // Player O goes
+
+      wrapper.find(".playing_square[data='2-0']").simulate('click'); // Player X goes
+
+      wrapper.find(".playing_square[data='2-2']").simulate('click'); // Player O wins
+
+      wrapper.find(".playing_square[data='2-1']").simulate('click'); // Player X move is not drawn
+
+      expect(count(wrapper.html(), /cross/g)).toEqual(2);
+    });
+  });
 });

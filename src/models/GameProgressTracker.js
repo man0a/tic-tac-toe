@@ -26,6 +26,7 @@ class GameProgressTracker {
       this.progress[`diag-main`] += playerProgress;
     }
 
+    // eslint-disable-next-line radix
     if(parseInt(gameMove.x) + parseInt(gameMove.y) === this.size - 1) {
       this.progress[`diag-anti`] += playerProgress;
     }
