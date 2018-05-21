@@ -5,6 +5,8 @@
 fieldset {
   margin: 50px auto auto;
   width: 485px;
+  box-shadow: 0 0 10px rgba(255,255,255,1) , 0 0 10px rgba(255,255,255,1) , 0 0 30px rgba(255,255,255,1) , 0 0 40px #02c5ff, 0 0 70px #02c5ff , 0 0 80px #02c5ff;
+  padding-bottom: 25px;
 }
 
 legend {
@@ -19,6 +21,6 @@ legend {
   transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
 }
 
-legend:hover {
-
+.wrapper__scoreboard {
+  color: white;
 }

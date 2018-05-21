@@ -1,25 +1,35 @@
 .wrapper__game_field {
   display: grid;
   margin: 50px auto;
-  border: 1px black solid;
   width: 500px;
   height: 500px;
   grid-template: 1fr 1fr 1fr / 1fr 1fr 1fr;
 }
 
 .circle {
-  border: 2px solid black;
+  border: 2px solid white;
   border-radius: 50%;
   display: inline-block;
   height: 80%;
   width: 80%;
-  box-shadow: 0 0 10px rgba(255,255,255,1) , 0 0 20px rgba(255,255,255,1) , 0 0 30px rgba(255,255,255,1) , 0 0 40px #ff00de , 0 0 70px #ff00de , 0 0 80px #ff00de , 0 0 100px #ff00de ;
+  box-shadow: 0 0 10px rgba(255,255,255,1) , 0 0 20px rgba(255,255,255,1) , 0 0 30px rgba(255,255,255,1) , 0 0 40px #ff00de , 0 0 70px #ff00de;
+}
+
+.btn__new_game {
+  border: none;
+  color: black;
+  padding: 15px 32px;
+  margin-top: 30px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
 }
 
 .playing_square {
   border: 1px solid white;
   padding-top: 10px;
-  box-shadow: 0 0 10px rgba(255,255,255,1) , 0 0 10px rgba(255,255,255,1) , 0 0 30px rgba(255,255,255,1) , 0 0 40px #02c5ff, 0 0 70px #02c5ff , 0 0 80px #02c5ff;
+  box-shadow: 0 0 10px rgba(255,255,255,1) , 0 0 10px rgba(255,255,255,1) , 0 0 30px rgba(255,255,255,1) , 0 0 40px #02c5ff, 0 0 70px #02c5ff;
 }
 
 .cross {
@@ -32,7 +42,7 @@
   content: ' ';
   height: 200px;
   width: 2px;
-  background-color: red;
+  background-color: white;
   box-shadow: 0 0 10px rgba(255,255,255,1) , 0 0 20px rgba(255,255,255,1) , 0 0 30px rgba(255,255,255,1) , 0 0 40px #ff00de , 0 0 70px #ff00de , 0 0 80px #ff00de , 0 0 100px #ff00de ;
 }
 .cross:before {
