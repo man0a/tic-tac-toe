@@ -73,5 +73,19 @@ describe('Component: <GameField />', () => {
 
       expect(count(wrapper.html(), /cross/g)).toEqual(2);
     });
+
+    it('Board is cleared when New Game Button is pressed', () => {
+      wrapper.find(".playing_square[data='0-0']").simulate('click'); // Player O goes
+
+      expect(wrapper.html()).toContain("circle");
+
+      wrapper.find(".btn__new_game").simulate('click');
+
+      expect(wrapper.html()).not.toContain("circle");
+
+      wrapper.find(".playing_square[data='0-0']").simulate('click'); // Player X goes
+      expect(wrapper.html()).toContain("cross");
+
+    });
   });
 });
